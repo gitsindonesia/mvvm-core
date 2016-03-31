@@ -30,17 +30,12 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:adapter="@{vm.bAdapter}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layoutManager="@{vm.bLayoutManager}"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{vm.bTextHello}"
-                tools:text="Lorem Ipsum"/>
-        </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

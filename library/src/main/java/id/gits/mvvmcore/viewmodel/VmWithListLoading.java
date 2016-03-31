@@ -1,9 +1,9 @@
-package id.gits.mvvmcore.base;
+package id.gits.mvvmcore.viewmodel;
 
 /**
  * Created by ibun on 18/03/16.
  */
-public interface VMWithListLoadingInterface {
+public interface VmWithListLoading {
     public void startLoading();
 
     public void stopLoading();

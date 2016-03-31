@@ -1,22 +1,33 @@
 package id.gits.mvvmsample.main;
 
 import android.databinding.ObservableField;
-import android.databinding.ViewDataBinding;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 
-import id.gits.mvvmcore.base.BaseVM;
+import java.util.ArrayList;
+import java.util.List;
+
+import id.gits.mvvmcore.viewmodel.GitsMvvmVM;
+import id.gits.mvvmsample.databinding.MainActivityBinding;
 
 /**
  * Created by ibun on 30/03/16.
  */
-public class MainActivityVM extends BaseVM<MainController> {
+public class MainActivityVM extends GitsMvvmVM<MainController, MainActivityBinding> {
+    private final List<DummyDao> mList = new ArrayList<>();
     public ObservableField<String> bTextHello = new ObservableField<>();
+    public DummyAdapter bAdapter;
+    public LinearLayoutManager bLayoutManager;
 
-    public MainActivityVM(AppCompatActivity activity, MainController controller, ViewDataBinding binding) {
+    public MainActivityVM(AppCompatActivity activity, MainController controller, MainActivityBinding binding) {
         super(activity, controller, binding);
+
+        //create dummy data
+        mList.add(new DummyDao("Hello World"));
+        mList.add(new DummyDao("Lorem Ipsum"));
+
+        bAdapter = new DummyAdapter(mList);
+        bLayoutManager = new LinearLayoutManager(activity);
     }
 
-    public void initTextView(String text) {
-        bTextHello.set(text);
-    }
 }
