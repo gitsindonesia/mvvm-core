@@ -1,4 +1,4 @@
-package id.gits.mvvmcore.base;
+package id.gits.mvvmcore.fragment;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -10,11 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import id.gits.mvvmcore.controller.GitsMvvmController;
 
 /**
  * Created by ibun on 21/03/16.
  */
-public abstract class BaseFragment<C extends BaseController> extends Fragment {
+public abstract class GitsMvvmFragment<C extends GitsMvvmController> extends Fragment {
     protected C mController;
     ViewDataBinding mBinding;
 

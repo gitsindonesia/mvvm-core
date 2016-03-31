@@ -1,4 +1,4 @@
-package id.gits.mvvmcore.base;
+package id.gits.mvvmcore.activity;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -9,11 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
+import id.gits.mvvmcore.controller.GitsMvvmController;
 
 /**
  * Created by ibun on 18/03/16.
  */
-public abstract class BaseActivity<C extends BaseController> extends AppCompatActivity {
+public abstract class GitsMvvmActivity<C extends GitsMvvmController> extends AppCompatActivity {
     protected C mController;
     ViewDataBinding mBinding;
 

@@ -1,23 +1,25 @@
-package id.gits.mvvmcore.base;
+package id.gits.mvvmcore.viewmodel;
 
 import android.databinding.ViewDataBinding;
 import android.support.v7.app.AppCompatActivity;
 
+import id.gits.mvvmcore.controller.GitsMvvmController;
+
 /**
  * Created by ibun on 18/03/16.
  */
-public class BaseVM<C extends BaseController> {
+public class GitsMvvmVM<C extends GitsMvvmController, B extends ViewDataBinding> {
     protected AppCompatActivity mActivity;
-    protected ViewDataBinding mBinding;
+    protected B mBinding;
     protected C mController;
 
-    public BaseVM(AppCompatActivity activity, C controller, ViewDataBinding binding) {
+    public GitsMvvmVM(AppCompatActivity activity, C controller, B binding) {
         mActivity = activity;
         mBinding = binding;
         mController = controller;
     }
 
-    public ViewDataBinding getBinding() {
+    public B getBinding() {
         return mBinding;
     }
 }

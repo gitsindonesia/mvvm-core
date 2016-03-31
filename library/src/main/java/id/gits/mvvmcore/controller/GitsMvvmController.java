@@ -1,4 +1,4 @@
-package id.gits.mvvmcore.base;
+package id.gits.mvvmcore.controller;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import id.gits.mvvmcore.viewmodel.GitsMvvmVM;
 import rx.Scheduler;
 import rx.Subscription;
 
 /**
  * Created by ibun on 18/03/16.
  */
-public abstract class BaseController<VM extends BaseVM, B extends ViewDataBinding> {
+public abstract class GitsMvvmController<VM extends GitsMvvmVM, B extends ViewDataBinding> {
     protected AppCompatActivity mActivity;
     protected VM mViewModel;
 

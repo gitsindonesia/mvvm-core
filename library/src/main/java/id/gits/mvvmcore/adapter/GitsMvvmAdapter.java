@@ -1,9 +1,10 @@
-package id.gits.mvvmcore.base;
+package id.gits.mvvmcore.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +13,19 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import id.gits.mvvmcore.viewmodel.GitsMvvmRowVM;
 
 /**
  * Created by ibun on 22/03/16.
  */
-public abstract class BaseAdapter<T, B extends ViewDataBinding> extends RecyclerView.Adapter<BaseAdapter.BindingHolder<B>> {
+public abstract class GitsMvvmAdapter<T, VM extends GitsMvvmRowVM, B extends ViewDataBinding> extends RecyclerView.Adapter<GitsMvvmAdapter.BindingHolder<B>> {
     protected Context mContext;
 
     protected List<T> mCollection;
 
-    public BaseAdapter(List<T> collection) {
+    protected VM mViewModel;
+
+    public GitsMvvmAdapter(List<T> collection) {
         mCollection = collection;
     }
 
@@ -30,17 +34,19 @@ public abstract class BaseAdapter<T, B extends ViewDataBinding> extends Recycler
         ButterKnife.bind(this, parent);
 
         mContext = parent.getContext();
-        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.
+        B binding = DataBindingUtil.inflate(LayoutInflater.
                 from(parent.getContext()), getLayoutRes(), parent, false);
+
         return new BindingHolder(binding);
     }
 
+    public abstract VM createViewModel(AppCompatActivity activity, B binding, T item);
 
     public abstract
     @LayoutRes
     int getLayoutRes();
 
-    public abstract void render(B binding, T data);
+    public abstract void render(B binding, VM viewModel, T item);
 
     public abstract void onRowClick(T data, int position);
 
@@ -48,7 +54,9 @@ public abstract class BaseAdapter<T, B extends ViewDataBinding> extends Recycler
     public void onBindViewHolder(final BindingHolder<B> holder, int position) {
         final T item = mCollection.get(position);
         //render
-        render(holder.getBinding(), item);
+
+        VM viewModel = createViewModel((AppCompatActivity) mContext, holder.getBinding(), item);
+        render(holder.getBinding(), viewModel, item);
 
         holder.getBinding().getRoot().setOnClickListener(new View.OnClickListener() {
             @Override

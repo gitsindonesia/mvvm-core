@@ -1,4 +1,4 @@
-package id.gits.mvvmcore.base;
+package id.gits.mvvmcore.viewmodel;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
@@ -14,18 +14,18 @@ import id.gits.mvvmcore.R;
 /**
  * Created by ibun on 18/03/16.
  */
-public class BaseRowVM<T> {
+public class GitsMvvmRowVM<T, B extends ViewDataBinding> {
     protected Context mContext;
-    protected ViewDataBinding mBinding;
+    protected B mBinding;
     protected T mData;
 
-    public BaseRowVM(Context context, ViewDataBinding binding, T data) {
+    public GitsMvvmRowVM(Context context, B binding, T data) {
         mContext = context;
         mBinding = binding;
         mData = data;
     }
 
-    public ViewDataBinding getBinding() {
+    public B getBinding() {
         return mBinding;
     }
 
