@@ -17,6 +17,7 @@ public class GitsMvvmVM<C extends GitsMvvmController, B extends ViewDataBinding>
         mActivity = activity;
         mBinding = binding;
         mController = controller;
+
     }
 
     public B getBinding() {

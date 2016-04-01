@@ -1,7 +1,9 @@
 package id.gits.mvvmcore.fragment;
 
+import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -22,22 +24,20 @@ public abstract class GitsMvvmFragment<C extends GitsMvvmController> extends Fra
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = createViewBinding(inflater);
-
+        mBinding = DataBindingUtil.inflate(inflater, getFragmentLayout(), container, false);
         ButterKnife.bind(this, mBinding.getRoot());
-
         mController = createController();
-
+        mController.initController(((AppCompatActivity) getActivity()), mBinding, savedInstanceState);
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mController.initController((AppCompatActivity) getActivity(), mBinding, savedInstanceState);
+//        mController.initController((AppCompatActivity) getActivity(), mBinding, savedInstanceState);
     }
 
-    protected abstract ViewDataBinding createViewBinding(LayoutInflater inflater);
+//    protected abstract ViewDataBinding createViewBinding(LayoutInflater inflater);
 
     protected abstract C createController();
 
@@ -64,4 +64,6 @@ public abstract class GitsMvvmFragment<C extends GitsMvvmController> extends Fra
         super.onSaveInstanceState(outState);
         mController.onSaveInstanceState(outState);
     }
+
+    public abstract  @LayoutRes int getFragmentLayout();
 }
