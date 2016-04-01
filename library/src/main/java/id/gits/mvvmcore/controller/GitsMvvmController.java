@@ -21,6 +21,7 @@ public abstract class GitsMvvmController<VM extends GitsMvvmVM, B extends ViewDa
     private List<Subscription> subscriptions = new ArrayList<>();
     protected Scheduler scheduler;
 
+
     protected void addSubscription(Subscription subscription) {
         subscriptions.add(subscription);
     }
@@ -62,4 +63,6 @@ public abstract class GitsMvvmController<VM extends GitsMvvmVM, B extends ViewDa
     public void onSaveInstanceState(Bundle outState) {
 
     }
+
+
 }

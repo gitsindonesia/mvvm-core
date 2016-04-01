@@ -1,8 +1,11 @@
 package id.gits.mvvmcore.activity;
 
+import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,27 +20,30 @@ import id.gits.mvvmcore.controller.GitsMvvmController;
 public abstract class GitsMvvmActivity<C extends GitsMvvmController> extends AppCompatActivity {
     protected C mController;
     ViewDataBinding mBinding;
+    protected Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mBinding = createContentViewBinding();
-
-        ButterKnife.bind(this);
-
-        Toolbar toolbar = getToolbar();
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
-
+        setContentView(getResLayout(),getToolbarId());
         mController = createController();
         mController.initController(this, mBinding, savedInstanceState);
     }
 
-    protected abstract Toolbar getToolbar();
+    protected void setContentView(@LayoutRes int idLayout,@IdRes int idToolbar){
+        mBinding = DataBindingUtil.setContentView(this,getResLayout());
 
-    protected abstract ViewDataBinding createContentViewBinding();
+        ButterKnife.bind(this);
+
+        mToolbar= (Toolbar) findViewById(getToolbarId());
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+
+        }
+    }
+    protected abstract @IdRes int getToolbarId();
+
+    protected abstract @LayoutRes int getResLayout();
 
     protected abstract C createController();
 
