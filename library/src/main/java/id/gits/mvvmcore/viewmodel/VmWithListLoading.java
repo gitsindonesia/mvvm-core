@@ -5,9 +5,7 @@ package id.gits.mvvmcore.viewmodel;
  */
 public interface VmWithListLoading {
     public void startLoading();
-
     public void stopLoading();
-
     public void showErrorLoading(String errorMessage);
     public void notifyAdapter();
 }

@@ -13,19 +13,19 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import id.gits.mvvmcore.viewmodel.GitsMvvmRowVM;
+import id.gits.mvvmcore.viewmodel.GitsRowVM;
 
 /**
  * Created by ibun on 22/03/16.
  */
-public abstract class GitsMvvmAdapter<T, VM extends GitsMvvmRowVM, B extends ViewDataBinding> extends RecyclerView.Adapter<GitsMvvmAdapter.BindingHolder<B>> {
+public abstract class GitsAdapter<T, VM extends GitsRowVM, B extends ViewDataBinding> extends RecyclerView.Adapter<GitsAdapter.BindingHolder<B>> {
     protected Context mContext;
 
     protected List<T> mCollection;
 
     protected VM mViewModel;
 
-    public GitsMvvmAdapter(List<T> collection) {
+    public GitsAdapter(List<T> collection) {
         mCollection = collection;
     }
 

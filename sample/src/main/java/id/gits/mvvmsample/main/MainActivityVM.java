@@ -7,13 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.gits.mvvmcore.viewmodel.GitsMvvmVM;
+import id.gits.mvvmcore.viewmodel.GitsVM;
 import id.gits.mvvmsample.databinding.MainActivityBinding;
 
 /**
  * Created by ibun on 30/03/16.
  */
-public class MainActivityVM extends GitsMvvmVM<MainController, MainActivityBinding> {
+public class MainActivityVM extends GitsVM<MainController, MainActivityBinding> {
     private final List<DummyDao> mList = new ArrayList<>();
     public ObservableField<String> bTextHello = new ObservableField<>();
     public DummyAdapter bAdapter;

@@ -12,12 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import butterknife.ButterKnife;
-import id.gits.mvvmcore.controller.GitsMvvmController;
+import id.gits.mvvmcore.controller.GitsController;
 
 /**
  * Created by ibun on 18/03/16.
  */
-public abstract class GitsMvvmActivity<C extends GitsMvvmController> extends AppCompatActivity {
+public abstract class GitsActivity<C extends GitsController> extends AppCompatActivity {
     protected C mController;
     ViewDataBinding mBinding;
     protected Toolbar mToolbar;
