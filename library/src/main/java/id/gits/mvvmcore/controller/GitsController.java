@@ -23,7 +23,6 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
     protected Scheduler scheduler;
     private Fragment mFragment;
 
-
     protected void addSubscription(Subscription subscription) {
         subscriptions.add(subscription);
     }
@@ -38,38 +37,21 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
         mActivity = activity;
         mViewModel = getmViewModel(binding);
         bindViewModel(binding, mViewModel);
-        onCreateController(activity, binding, savedInstanceState);
+        onCreateController(savedInstanceState);
     }
 
     public void initController(Fragment fragment, B binding, Bundle savedInstanceState) {
         mFragment= fragment;
         mViewModel = getmViewModel(binding);
         bindViewModel(binding, mViewModel);
-
-        onCreateController(fragment, binding, savedInstanceState);
+        onCreateController(savedInstanceState);
     }
 
     public abstract VM getmViewModel(B binding);
 
     public abstract void bindViewModel(B binding, VM viewModel);
 
-    /**
-     * Digunakan untuk class yang extends AppCompatActivity
-     * @param activity
-     * @param binding
-     * @param savedInstanceState
-     */
-    public void onCreateController(AppCompatActivity activity, B binding, Bundle savedInstanceState) {
-
-    }
-
-    /**
-     * Digunakan untuk class yang extends Fragment
-     * @param fragment
-     * @param binding
-     * @param savedInstanceState
-     */
-    public void onCreateController(Fragment fragment, B binding, Bundle savedInstanceState) {
+    public void onCreateController(Bundle savedInstanceState) {
 
     }
 
