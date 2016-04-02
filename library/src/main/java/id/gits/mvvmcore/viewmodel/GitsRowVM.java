@@ -14,12 +14,12 @@ import id.gits.mvvmcore.R;
 /**
  * Created by ibun on 18/03/16.
  */
-public class GitsMvvmRowVM<T, B extends ViewDataBinding> {
+public class GitsRowVM<T, B extends ViewDataBinding> {
     protected Context mContext;
     protected B mBinding;
     protected T mData;
 
-    public GitsMvvmRowVM(Context context, B binding, T data) {
+    public GitsRowVM(Context context, B binding, T data) {
         mContext = context;
         mBinding = binding;
         mData = data;

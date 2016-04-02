@@ -1,5 +1,6 @@
-<manifest package="id.gits.mvvmsample"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="id.gits.mvvmsample">
 
     <application
         android:allowBackup="true"
@@ -7,14 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.newsample.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.fragment.DashboardActivity" />
+        <activity
+            android:name=".main.fragment.TabActivity"
+            android:label="@string/title_activity_tab"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -12,12 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import id.gits.mvvmcore.controller.GitsMvvmController;
+import id.gits.mvvmcore.controller.GitsController;
 
 /**
  * Created by ibun on 21/03/16.
  */
-public abstract class GitsMvvmFragment<C extends GitsMvvmController> extends Fragment {
+public abstract class GitsFragment<C extends GitsController> extends Fragment {
     protected C mController;
     ViewDataBinding mBinding;
 
@@ -27,7 +27,8 @@ public abstract class GitsMvvmFragment<C extends GitsMvvmController> extends Fra
         mBinding = DataBindingUtil.inflate(inflater, getFragmentLayout(), container, false);
         ButterKnife.bind(this, mBinding.getRoot());
         mController = createController();
-        mController.initController(((AppCompatActivity) getActivity()), mBinding, savedInstanceState);
+        mController.initController(this, mBinding, savedInstanceState);
+
         return mBinding.getRoot();
     }
 
@@ -36,8 +37,6 @@ public abstract class GitsMvvmFragment<C extends GitsMvvmController> extends Fra
         super.onViewCreated(view, savedInstanceState);
 //        mController.initController((AppCompatActivity) getActivity(), mBinding, savedInstanceState);
     }
-
-//    protected abstract ViewDataBinding createViewBinding(LayoutInflater inflater);
 
     protected abstract C createController();
 

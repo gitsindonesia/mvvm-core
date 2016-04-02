@@ -4,14 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
-import id.gits.mvvmcore.adapter.GitsMvvmAdapter;
+import id.gits.mvvmcore.adapter.GitsAdapter;
 import id.gits.mvvmsample.R;
 import id.gits.mvvmsample.databinding.DummyRowBinding;
 
 /**
  * Created by ibun on 31/03/16.
  */
-public class DummyAdapter extends GitsMvvmAdapter<DummyDao, DummyRowVM, DummyRowBinding> {
+public class DummyAdapter extends GitsAdapter<DummyDao, DummyRowVM, DummyRowBinding> {
     public DummyAdapter(List<DummyDao> collection) {
         super(collection);
     }
