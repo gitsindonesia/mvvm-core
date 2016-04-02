@@ -26,7 +26,7 @@ public class MainController extends GitsController<MainActivityVM, MainActivityB
     }
 
     @Override
-    public void onCreateController(AppCompatActivity activity, MainActivityBinding binding, Bundle savedInstanceState) {
+    public void onCreateController(Bundle savedInstanceState) {
         //TODO
 
     }
