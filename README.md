@@ -81,11 +81,6 @@ public class MainActivity extends GitsActivity<MainController> {
 ### Controller (MainController.java)
 ```
 public class MainController extends GitsController<MainActivityVM, MainActivityBinding> {
-   /*@Override
-   public MainActivityVM createViewModel(AppCompatActivity activity, MainActivityBinding binding) {
-      return new MainActivityVM(activity, this, binding);
-   }*/
-   
    @Override
    public MainActivityVM getmViewModel(MainActivityBinding binding) {
       return new MainActivityVM(mActivity, this, binding);
