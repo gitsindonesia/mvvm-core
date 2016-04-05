@@ -1,6 +1,7 @@
 package id.gits.mvvmsample.main;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -33,6 +34,6 @@ public class DummyAdapter extends GitsAdapter<DummyDao, DummyRowVM, DummyRowBind
 
     @Override
     public void onRowClick(DummyDao data, int position) {
-
+        Toast.makeText(mContext, "Hello " + mCollection.get(position), Toast.LENGTH_SHORT).show();
     }
 }
