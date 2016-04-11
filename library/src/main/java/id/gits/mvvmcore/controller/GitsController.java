@@ -2,6 +2,7 @@ package id.gits.mvvmcore.controller;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
@@ -21,7 +22,12 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
 
     private List<Subscription> subscriptions = new ArrayList<>();
     protected Scheduler scheduler;
-    private Fragment mFragment;
+
+    @Nullable
+    /**
+     * Fragment class that extends GitsFragment. Null if activity
+     */
+    protected Fragment mFragment;
 
     protected void addSubscription(Subscription subscription) {
         subscriptions.add(subscription);
@@ -41,7 +47,8 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
     }
 
     public void initController(Fragment fragment, B binding, Bundle savedInstanceState) {
-        mFragment= fragment;
+        mFragment = fragment;
+        mActivity = (AppCompatActivity) mFragment.getActivity();
         mViewModel = getmViewModel(binding);
         bindViewModel(binding, mViewModel);
         onCreateController(savedInstanceState);
