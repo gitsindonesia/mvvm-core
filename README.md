@@ -82,7 +82,7 @@ public class MainActivity extends GitsActivity<MainController> {
 ```
 public class MainController extends GitsController<MainActivityVM, MainActivityBinding> {
    @Override
-   public MainActivityVM getmViewModel(MainActivityBinding binding) {
+   public MainActivityVM createViewModel(MainActivityBinding binding) {
       return new MainActivityVM(mActivity, this, binding);
    }
    
@@ -160,7 +160,7 @@ repositories {
     }
 }
 dependencies {
-   compile 'id.gits:mvvmcore:0.0.4-SNAPSHOT'
+   compile 'id.gits:mvvmcore:0.0.5-SNAPSHOT'
 }
 ```
 
