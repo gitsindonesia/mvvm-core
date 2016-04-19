@@ -11,7 +11,7 @@ import id.gits.mvvmsample.databinding.MainActivityBinding;
 public class MainController extends GitsController<MainActivityVM, MainActivityBinding> {
 
     @Override
-    public MainActivityVM getmViewModel(MainActivityBinding binding) {
+    public MainActivityVM createViewModel(MainActivityBinding binding) {
         return new MainActivityVM(mActivity, this, binding);
     }
 

@@ -41,7 +41,7 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
 
     public void initController(AppCompatActivity activity, B binding, Bundle savedInstanceState) {
         mActivity = activity;
-        mViewModel = getmViewModel(binding);
+        mViewModel = createViewModel(binding);
         bindViewModel(binding, mViewModel);
         onCreateController(savedInstanceState);
     }
@@ -49,12 +49,12 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
     public void initController(Fragment fragment, B binding, Bundle savedInstanceState) {
         mFragment = fragment;
         mActivity = (AppCompatActivity) mFragment.getActivity();
-        mViewModel = getmViewModel(binding);
+        mViewModel = createViewModel(binding);
         bindViewModel(binding, mViewModel);
         onCreateController(savedInstanceState);
     }
 
-    public abstract VM getmViewModel(B binding);
+    public abstract VM createViewModel(B binding);
 
     public abstract void bindViewModel(B binding, VM viewModel);
 
