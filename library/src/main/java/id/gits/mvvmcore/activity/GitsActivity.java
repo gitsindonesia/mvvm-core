@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import butterknife.ButterKnife;
 import id.gits.mvvmcore.controller.GitsController;
 
 /**
@@ -25,25 +24,28 @@ public abstract class GitsActivity<C extends GitsController> extends AppCompatAc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getResLayout(),getToolbarId());
+        setContentView(getResLayout(), getToolbarId());
         mController = createController();
         mController.initController(this, mBinding, savedInstanceState);
     }
 
-    protected void setContentView(@LayoutRes int idLayout,@IdRes int idToolbar){
-        mBinding = DataBindingUtil.setContentView(this,getResLayout());
+    protected void setContentView(@LayoutRes int idLayout, @IdRes int idToolbar) {
+        mBinding = DataBindingUtil.setContentView(this, getResLayout());
 
-        ButterKnife.bind(this);
-
-        mToolbar= (Toolbar) findViewById(getToolbarId());
+        mToolbar = (Toolbar) findViewById(getToolbarId());
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
 
         }
     }
-    protected abstract @IdRes int getToolbarId();
 
-    protected abstract @LayoutRes int getResLayout();
+    protected abstract
+    @IdRes
+    int getToolbarId();
+
+    protected abstract
+    @LayoutRes
+    int getResLayout();
 
     protected abstract C createController();
 

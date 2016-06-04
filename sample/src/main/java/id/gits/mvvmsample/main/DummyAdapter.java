@@ -1,6 +1,6 @@
 package id.gits.mvvmsample.main;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.widget.Toast;
 
 import java.util.List;
@@ -17,8 +17,9 @@ public class DummyAdapter extends GitsAdapter<DummyDao, DummyRowVM, DummyRowBind
         super(collection);
     }
 
+
     @Override
-    public DummyRowVM createViewModel(AppCompatActivity activity, DummyRowBinding binding, DummyDao item) {
+    public DummyRowVM createViewModel(Activity activity, DummyRowBinding binding, DummyDao item) {
         return new DummyRowVM(activity, binding, item);
     }
 

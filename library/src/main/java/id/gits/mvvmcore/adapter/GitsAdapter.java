@@ -1,10 +1,10 @@
 package id.gits.mvvmcore.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
 import id.gits.mvvmcore.viewmodel.GitsRowVM;
 
 /**
@@ -31,8 +30,6 @@ public abstract class GitsAdapter<T, VM extends GitsRowVM, B extends ViewDataBin
 
     @Override
     public BindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ButterKnife.bind(this, parent);
-
         mContext = parent.getContext();
         B binding = DataBindingUtil.inflate(LayoutInflater.
                 from(parent.getContext()), getLayoutRes(), parent, false);
@@ -40,7 +37,7 @@ public abstract class GitsAdapter<T, VM extends GitsRowVM, B extends ViewDataBin
         return new BindingHolder(binding);
     }
 
-    public abstract VM createViewModel(AppCompatActivity activity, B binding, T item);
+    public abstract VM createViewModel(Activity activity, B binding, T item);
 
     public abstract
     @LayoutRes
@@ -55,7 +52,7 @@ public abstract class GitsAdapter<T, VM extends GitsRowVM, B extends ViewDataBin
         final T item = mCollection.get(position);
         //render
 
-        VM viewModel = createViewModel((AppCompatActivity) mContext, holder.getBinding(), item);
+        VM viewModel = createViewModel((Activity) mContext, holder.getBinding(), item);
         render(holder.getBinding(), viewModel, item);
 
         holder.getBinding().getRoot().setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,7 @@
 package id.gits.mvvmsample.main;
 
+import android.app.Activity;
 import android.databinding.ObservableField;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class MainActivityVM extends GitsVM<MainController, MainActivityBinding> 
     public DummyAdapter bAdapter;
     public LinearLayoutManager bLayoutManager;
 
-    public MainActivityVM(AppCompatActivity activity, MainController controller, MainActivityBinding binding) {
+    public MainActivityVM(Activity activity, MainController controller, MainActivityBinding binding) {
         super(activity, controller, binding);
 
         //create dummy data
