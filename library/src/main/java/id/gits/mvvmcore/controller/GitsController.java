@@ -1,6 +1,5 @@
 package id.gits.mvvmcore.controller;
 
-import android.app.Activity;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +17,7 @@ import rx.Subscription;
  * Created by ibun on 18/03/16.
  */
 public abstract class GitsController<VM extends GitsVM, B extends ViewDataBinding> {
-    protected Activity mActivity;
+    protected AppCompatActivity mActivity;
     protected VM mViewModel;
 
     private List<Subscription> subscriptions = new ArrayList<>();
@@ -40,7 +39,7 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
         }
     }
 
-    public void initController(Activity activity, B binding, Bundle savedInstanceState) {
+    public void initController(AppCompatActivity activity, B binding, Bundle savedInstanceState) {
         mActivity = activity;
         mViewModel = createViewModel(binding);
         bindViewModel(binding, mViewModel);
