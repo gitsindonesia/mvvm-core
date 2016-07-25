@@ -75,9 +75,4 @@ public abstract class GitsController<VM extends GitsVM, B extends ViewDataBindin
     }
 
 
-    public void onSaveInstanceState(Bundle outState) {
-
-    }
-
-
 }

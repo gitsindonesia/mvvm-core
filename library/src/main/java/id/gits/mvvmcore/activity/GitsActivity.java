@@ -60,24 +60,21 @@ public abstract class GitsActivity<C extends GitsController> extends AppCompatAc
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mController.destroyController();
+        if (mController != null)
+            mController.destroyController();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mController.pauseController();
+        if (mController != null)
+            mController.pauseController();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mController.resumeController();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mController.onSaveInstanceState(outState);
+        if (mController != null)
+            mController.resumeController();
     }
 }

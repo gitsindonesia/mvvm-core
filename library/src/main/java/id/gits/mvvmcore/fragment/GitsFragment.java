@@ -29,36 +29,28 @@ public abstract class GitsFragment<C extends GitsController> extends Fragment {
         return mBinding.getRoot();
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-//        mController.initController((AppCompatActivity) getActivity(), mBinding, savedInstanceState);
-    }
 
     protected abstract C createController();
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mController.destroyController();
+        if (mController != null)
+            mController.destroyController();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mController.resumeController();
+        if (mController != null)
+            mController.resumeController();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mController.pauseController();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mController.onSaveInstanceState(outState);
+        if (mController != null)
+            mController.pauseController();
     }
 
     public abstract
