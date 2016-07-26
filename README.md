@@ -160,7 +160,7 @@ repositories {
     }
 }
 dependencies {
-   compile 'id.gits:mvvmcore:0.0.5-SNAPSHOT'
+   compile 'id.gits:mvvmcore:0.0.8-SNAPSHOT'
 }
 ```
 
