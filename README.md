@@ -59,7 +59,7 @@ android {
 ```
 ### Activity (MainActivity.java)
 ```
-public class MainActivity extends GitsActivity<<MainActivityVM, MainActivityBinding>> {
+public class MainActivity extends GitsActivity<MainActivityVM, MainActivityBinding> {
 
     @Override
     protected int getToolbarId() {
