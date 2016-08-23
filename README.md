@@ -59,55 +59,39 @@ android {
 ```
 ### Activity (MainActivity.java)
 ```
-public class MainActivity extends GitsActivity<MainController> {
+public class MainActivity extends GitsActivity<<MainActivityVM, MainActivityBinding>> {
 
-   @Override
-   protected int getToolbarId() {
-      return R.id.toolbar;
-   }
-   
-   @Override
-   protected int getResLayout() {
-      return R.layout.main_activity;
-   }
-   
-   @Override
-   protected MainController createController() {
-      return new MainController();
-   }
-}
-```
-
-### Controller (MainController.java)
-```
-public class MainController extends GitsController<MainActivityVM, MainActivityBinding> {
-   @Override
-   public MainActivityVM createViewModel(MainActivityBinding binding) {
-      return new MainActivityVM(mActivity, this, binding);
-   }
-   
-   @Override
-   public void bindViewModel(MainActivityBinding binding, MainActivityVM viewModel) {
-      binding.setVm(viewModel);
-   }
-   
-   @Override
-   public void onCreateController(Bundle savedInstanceState) {
-      //TODO your onCreate
-
-   }
+    @Override
+    protected int getToolbarId() {
+        return R.id.toolbar;
+    }
+    
+    @Override
+    public int getResLayout() {
+        return R.layout.main_activity;
+    }
+    
+    @Override
+    public MainActivityVM getViewModel() {
+        return new MainActivityVM(this);
+    }
+    
+    @Override
+    public void bindViewModel(MainActivityBinding binding, MainActivityVM viewModel) {
+        binding.setVm(viewModel);
+    }
 }
 ```
 
 ### View Model (MainActivityVM.java)
 ```
-public class MainActivityVM extends GitsVM<MainController, MainActivityBinding> {
+public class MainActivityVM extends GitsVM {
    private final List<DummyDao> mList = new ArrayList<>();
    public DummyAdapter bAdapter;
    public LinearLayoutManager bLayoutManager;
    
-   public MainActivityVM(AppCompatActivity activity, MainController controller, MainActivityBinding binding) {
-      super(activity, controller, binding);
+   public MainActivityVM(Context context) {
+      super(context);
       
       //create dummy data
       mList.add(new DummyDao("Hello World"));
@@ -152,15 +136,8 @@ For complete sample usage, you can take a look at the sample project.
 ## Install
 The latest version is available in the Sonatype snapshots repo.
 ```
-repositories {
-   mavenCentral()
-   mavenLocal()
-   maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
-    }
-}
 dependencies {
-   compile 'id.gits:mvvmcore:0.0.8-SNAPSHOT'
+   compile 'id.gits:mvvmcore:0.1'
 }
 ```
 
