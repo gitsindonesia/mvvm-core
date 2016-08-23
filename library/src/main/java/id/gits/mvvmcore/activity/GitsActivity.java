@@ -10,43 +10,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import id.gits.mvvmcore.controller.GitsController;
+import id.gits.mvvmcore.MvvmView;
+import id.gits.mvvmcore.viewmodel.GitsVM;
 
 /**
  * Created by ibun on 18/03/16.
  */
-public abstract class GitsActivity<C extends GitsController> extends AppCompatActivity {
-    protected C mController;
-    ViewDataBinding mBinding;
+public abstract class GitsActivity<VM extends GitsVM, B extends ViewDataBinding> extends AppCompatActivity implements MvvmView<VM, B> {
+    protected B mBinding;
     protected Toolbar mToolbar;
+    protected VM mViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getResLayout(), getToolbarId());
-        mController = createController();
-        mController.initController(this, mBinding, savedInstanceState);
     }
 
     protected void setContentView(@LayoutRes int idLayout, @IdRes int idToolbar) {
         mBinding = DataBindingUtil.setContentView(this, getResLayout());
 
+        mViewModel = getViewModel();
+        bindViewModel(mBinding, mViewModel);
+
         mToolbar = (Toolbar) findViewById(getToolbarId());
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
-
         }
     }
 
     protected abstract
     @IdRes
     int getToolbarId();
-
-    protected abstract
-    @LayoutRes
-    int getResLayout();
-
-    protected abstract C createController();
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -57,24 +52,4 @@ public abstract class GitsActivity<C extends GitsController> extends AppCompatAc
             return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mController != null)
-            mController.destroyController();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mController != null)
-            mController.pauseController();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mController != null)
-            mController.resumeController();
-    }
 }

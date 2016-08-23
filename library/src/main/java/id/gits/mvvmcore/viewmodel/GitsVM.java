@@ -1,26 +1,33 @@
 package id.gits.mvvmcore.viewmodel;
 
-import android.databinding.ViewDataBinding;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 
-import id.gits.mvvmcore.controller.GitsController;
+import java.util.ArrayList;
+import java.util.List;
+
+import rx.Subscription;
 
 /**
  * Created by ibun on 18/03/16.
  */
-public class GitsVM<C extends GitsController, B extends ViewDataBinding> {
-    protected AppCompatActivity mActivity;
-    protected B mBinding;
-    protected C mController;
+public class GitsVM implements Subscribable {
+    protected Context mContext;
 
-    public GitsVM(AppCompatActivity activity, C controller, B binding) {
-        mActivity = activity;
-        mBinding = binding;
-        mController = controller;
-
+    public GitsVM(Context context) {
+        mContext = context;
     }
 
-    public B getBinding() {
-        return mBinding;
+    private List<Subscription> subscriptions = new ArrayList<>();
+
+    @Override
+    public void addSubscription(Subscription subscription) {
+        subscriptions.add(subscription);
+    }
+
+    @Override
+    public void finishSubscriber() {
+        for (Subscription sub : subscriptions) {
+            sub.unsubscribe();
+        }
     }
 }

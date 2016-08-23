@@ -2,24 +2,30 @@ package id.gits.mvvmsample.main;
 
 import id.gits.mvvmcore.activity.GitsActivity;
 import id.gits.mvvmsample.R;
+import id.gits.mvvmsample.databinding.MainActivityBinding;
 
 /**
  * Created by ibun on 30/03/16.
  */
-public class MainActivity extends GitsActivity<MainController> {
-
+public class MainActivity extends GitsActivity<MainActivityVM, MainActivityBinding> {
     @Override
     protected int getToolbarId() {
         return R.id.toolbar;
     }
 
     @Override
-    protected int getResLayout() {
+    public int getResLayout() {
         return R.layout.main_activity;
     }
 
     @Override
-    protected MainController createController() {
-        return new MainController();
+    public MainActivityVM getViewModel() {
+        return new MainActivityVM(this);
     }
+
+    @Override
+    public void bindViewModel(MainActivityBinding binding, MainActivityVM viewModel) {
+        binding.setVm(viewModel);
+    }
+
 }
